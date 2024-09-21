@@ -41,16 +41,17 @@
 		<figure class="card card-product-grid">
 			<div class="img-wrap"> 
 				<span class="badge badge-danger"> NEW </span>
-				<img src="{{product.images.url}}">
+				<a href="{{ product.get_url }}"> <img src="{{product.images.url}}"> </a>
 			</div> <!-- img-wrap.// -->
 			<figcaption class="info-wrap">
-					<a href="#" class="title mb-2">{{product.product_name}}</a>
+					<a href="{{ product.get_url }}" class="title mb-2">{{product.product_name}}</a>
 					<div class="price-wrap">
 						<span class="price">${{product.price}}</span> 
 					</div> <!-- price-wrap.// -->
 					
-					<p class="text-muted ">{{product.description}}</p>
-				   
+					<a href="{{ product.get_url }}">
+						<p class="text-muted ">{{product.description}}</p>
+				   	</a>
 					<hr>
 				
 					<label class="custom-control mb-3 custom-checkbox">
