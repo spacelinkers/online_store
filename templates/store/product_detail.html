@@ -84,6 +84,7 @@
             {% endif %}
         </dl>
 
+        {% if single_product.stock > 0 %}
         <div class="form-row  mt-4">
             <div class="form-group col-md flex-grow-0">
                 <div class="input-group mb-3 input-spinner">
@@ -111,6 +112,7 @@
                 {% endif %}
             </div> <!-- col.// -->
         </div> <!-- row.// -->
+        {% endif %}
 
     </article> <!-- product-info-aside .// -->
 	</main> <!-- col.// -->
