@@ -11,6 +11,8 @@ from django.core.mail import EmailMessage
 
 from .forms import RegistrationForm
 from .models import Account
+from carts.models import Cart, CartItem
+from carts.views import _cart_id
 
 def register(request):
 
@@ -66,6 +68,46 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
+            try:
+                cart = Cart.objects.get(cart_id=_cart_id(request))
+                is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
+
+                if is_cart_item_exists:
+                    cart_items = CartItem.objects.filter(cart=cart)
+
+                    item_quantity = []
+                    new_cart_item = []
+                    for item in cart_items:
+                        new_cart_item.append(item.product)
+                        item_quantity.append(item.quantity)
+
+                    existing_cart_items = CartItem.objects.filter(user=user)
+
+                    existing_item_list = []
+                    id = []
+
+                    for item in existing_cart_items:
+                        existing_item_list.append(item.product)
+                        id.append(item.id)
+
+                    for product in new_cart_item:
+                        if product in existing_item_list:
+                            index = existing_item_list.index(product)
+                            item_id = id[index]
+
+                            item = CartItem.objects.get(id=item_id)
+                            item.quantity += item_quantity[index]
+                            item.user = user
+                            item.save()
+                        else:
+                            cart_item = CartItem.objects.filter(cart=cart)
+                            for item in cart_item:
+                                item.user = user
+                                item.save()
+                    
+            except:
+                pass
+
             auth.login(request, user)
             return redirect('home')
         else:

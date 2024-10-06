@@ -12,22 +12,18 @@
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
 	<div class="container">
-
 		<div class="row">
-
-			
-
 			<main class="col-md-9">
 				{% if not cart_items %}
 				<div class="card-body text-center">
-				    <h2 >Your Shopping Cart is Empty!</h2>
-			    </div>
+					<h2>Your Shopping Cart is Empty!</h2>
+				</div>
 				<br>
 				<div class="card-body text-center">
 					<a href="{% url 'home'%}" class="btn btn-light"> Continue shopping </a>
 				</div>
 
-			    {% else %}
+				{% else %}
 				<div class="card">
 
 					<table class="table table-borderless table-shopping-cart">
@@ -44,22 +40,27 @@
 							<tr>
 								<td>
 									<figure class="itemside">
-										<div class="aside"><img src="{{ cart_item.product.images.url }}" class="img-sm"></div>
+										<div class="aside"><img src="{{ cart_item.product.images.url }}" class="img-sm">
+										</div>
 										<figcaption class="info">
-											<a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
+											<a href="{{ cart_item.product.get_url }}" class="title text-dark">{{cart_item.product.product_name }}</a>
 											<p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
 										</figcaption>
 									</figure>
 								</td>
 								<td>
-									<div class="col"> 
+									<div class="col">
 										<div class="input-group input-spinner">
 											<div class="input-group-prepend">
-											<a href="{% url 'remove_cart' cart_item.product.id %}" class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </a>
+												<a href="{% url 'remove_cart' cart_item.product.id %}"
+													class="btn btn-light" type="button" id="button-plus"> <i
+														class="fa fa-minus"></i> </a>
 											</div>
-											<input type="text" class="form-control"  value="{{ cart_item.quantity}}">
+											<input type="text" class="form-control" value="{{ cart_item.quantity}}">
 											<div class="input-group-append">
-											<a href="{% url 'add_cart' cart_item.product.id %}" class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </a>
+												<a href="{% url 'add_cart' cart_item.product.id %}"
+													class="btn btn-light" type="button" id="button-minus"> <i
+														class="fa fa-plus"></i> </a>
 											</div>
 										</div> <!-- input-group.// -->
 									</div> <!-- col.// -->
@@ -73,7 +74,8 @@
 								<td class="text-right">
 									<a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light"
 										data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
-									<a href="{% url 'remove_cart_item' cart_item.product.id %}" class="btn btn-light"> Remove</a>
+									<a href="{% url 'remove_cart_item' cart_item.product.id %}" class="btn btn-light">
+										Remove</a>
 								</td>
 							</tr>
 							{% endfor %}
@@ -81,9 +83,10 @@
 					</table>
 
 					<div class="card-body border-top">
-						<a href="#" class="btn btn-primary float-md-right"> Make Purchase <i
+						<a href="{% url 'checkout' %}" class="btn btn-primary float-md-right"> Make Purchase <i
 								class="fa fa-chevron-right"></i> </a>
-						<a href="{% url 'store' %}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+						<a href="{% url 'store' %}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue
+							shopping </a>
 					</div>
 				</div> <!-- card.// -->
 
@@ -92,7 +95,6 @@
 				</div>
 				{% endif %}
 			</main> <!-- col.// -->
-
 
 			<aside class="col-md-3">
 				<div class="card mb-3">
