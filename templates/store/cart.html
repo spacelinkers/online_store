@@ -52,7 +52,7 @@
 									<div class="col">
 										<div class="input-group input-spinner">
 											<div class="input-group-prepend">
-												<a href="{% url 'remove_cart' cart_item.product.id %}"
+												<a href="{% url 'remove_cart' cart_item.product.id cart_item.id %}"
 													class="btn btn-light" type="button" id="button-plus"> <i
 														class="fa fa-minus"></i> </a>
 											</div>
@@ -74,7 +74,7 @@
 								<td class="text-right">
 									<a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light"
 										data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
-									<a href="{% url 'remove_cart_item' cart_item.product.id %}" class="btn btn-light">
+									<a href="{% url 'remove_cart_item' cart_item.product.id cart_item.id %}" class="btn btn-light">
 										Remove</a>
 								</td>
 							</tr>
