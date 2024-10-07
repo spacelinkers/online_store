@@ -73,32 +73,28 @@ def login(request):
             try:
                 cart = Cart.objects.get(cart_id=_cart_id(request))
                 is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
-
                 if is_cart_item_exists:
-                    cart_items = CartItem.objects.filter(cart=cart)
+                    cart_item = CartItem.objects.filter(cart=cart)
 
-                    item_quantity = []
-                    new_cart_item = []
-                    for item in cart_items:
-                        new_cart_item.append(item.product)
-                        item_quantity.append(item.quantity)
+                    product_variation = []
+                    for item in cart_item:
+                        variation = item.variations.all()
+                        product_variation.append(list(variation))
 
-                    existing_cart_items = CartItem.objects.filter(user=user)
-
-                    existing_item_list = []
+                    cart_item = CartItem.objects.filter(user=user)
+                    ex_var_list = []
                     id = []
-
-                    for item in existing_cart_items:
-                        existing_item_list.append(item.product)
+                    for item in cart_item:
+                        existing_variation = item.variations.all()
+                        ex_var_list.append(list(existing_variation))
                         id.append(item.id)
 
-                    for product in new_cart_item:
-                        if product in existing_item_list:
-                            index = existing_item_list.index(product)
+                    for pr in product_variation:
+                        if pr in ex_var_list:
+                            index = ex_var_list.index(pr)
                             item_id = id[index]
-
                             item = CartItem.objects.get(id=item_id)
-                            item.quantity += item_quantity[index]
+                            item.quantity += 1
                             item.user = user
                             item.save()
                         else:
@@ -106,24 +102,23 @@ def login(request):
                             for item in cart_item:
                                 item.user = user
                                 item.save()
-                    
             except:
                 pass
 
             auth.login(request, user)
-
             url = request.META.get('HTTP_REFERER')
-            
             try:
                 query = requests.utils.urlparse(url).query
+                # next=/cart/checkout/
                 params = dict(x.split('=') for x in query.split('&'))
                 if 'next' in params:
                     nextPage = params['next']
                     return redirect(nextPage)
             except:
                 return redirect('home')
+            
         else:
-            messages.error(request, "Ivalid login credentials")
+            messages.error(request, 'Invalid login credentials')
             return redirect('login')
         
     return render(request, 'accounts/login.html')
