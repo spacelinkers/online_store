@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<!-- load header -->
+{% include 'includes/header_user.html' %}
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+	<div class="container">
+        <form action="{% url 'place_order' %}" method="POST">
+        {% csrf_token %}
+		<div class="row">
+			<main class="col-md-8">
+                <div class="container" style="max-width: 720px;">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Delivery info</h4>
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6">
+                                        <label class="js-check box active">
+                                            <input type="radio" name="dostavka" value="option1" checked>
+                                            <h6 class="title">Standart delivery</h6>
+                                            <p class="text-muted">Free by airline within 20 days</p>
+                                        </label> <!-- js-check.// -->
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="js-check box">
+                                            <input type="radio" name="dostavka" value="option1">
+                                            <h6 class="title">Fast delivery</h6>
+                                            <p class="text-muted">Extra 20$ will be charged </p>
+                                        </label> <!-- js-check.// -->
+                                    </div>
+                                </div> <!-- form row.// -->
+                
+                                <div class="form-row">
+                                    <div class="col form-group">
+                                        <label>First name</label>
+                                        <input type="text" name="first_name" class="form-control" placeholder="" required>
+                                    </div> <!-- form-group end.// -->
+                                    <div class="col form-group">
+                                        <label>Last name</label>
+                                        <input type="text" name="last_name" class="form-control" placeholder="" required>
+                                    </div> <!-- form-group end.// -->
+                                </div> <!-- form-row end.// -->
+                
+                                <div class="form-row">
+                                    <div class="col form-group">
+                                        <label>Email</label>
+                                        <input type="email" name="email" class="form-control" placeholder="" required>
+                                    </div> <!-- form-group end.// -->
+                                    <div class="col form-group">
+                                        <label>Phone</label>
+                                        <input type="text" name="phone" class="form-control" placeholder="" required>
+                                    </div> <!-- form-group end.// -->
+                                </div> <!-- form-row end.// -->
+
+                                <div class="form-row">
+                                    <div class="col form-group">
+                                        <label>Address Line 1</label>
+                                        <input type="text" name="address_line_1" class="form-control" placeholder="" required>
+                                    </div> <!-- form-group end.// -->
+                                    <div class="col form-group">
+                                        <label>Address Line 2</label>
+                                        <input type="text" name="address_line_2" class="form-control" placeholder="">
+                                    </div> <!-- form-group end.// -->
+                                </div> <!-- form-row end.// -->
+                
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label>Country</label>
+                                        <input type="text" name="country" class="form-control" required>
+                                    </div> <!-- form-group end.// -->
+                                    <div class="form-group col-md-4">
+                                        <label>City</label>
+                                        <input type="text" name="city" class="form-control" required>
+                                    </div> <!-- form-group end.// -->
+                                    <div class="form-group col-md-4">
+                                        <label>State</label>
+                                        <input type="text" name="state" class="form-control" required>
+                                    </div> <!-- form-group end.// -->
+                                </div> <!-- form-row.// -->
+                                <div class="form-group">
+                                    <label>Order Note</label>
+                                    <textarea class="form-control" name="order_note" rows="2"></textarea>
+                                </div> <!-- form-group// -->
+                        </div> <!-- card-body.// -->
+                    </div> <!-- card .// -->
+            
+                    <br><br>
+            
+                </div> <!-- container .//  -->
+			</main> <!-- col.// -->
+
+			<aside class="col-md-4">
+				<div class="card">
+					<div class="card-body">
+						<dl class="dlist-align">
+							<dt>Total price:</dt>
+							<dd class="text-right">USD {{total}}</dd>
+						</dl>
+						<dl class="dlist-align">
+							<dt>Tax:</dt>
+							<dd class="text-right">USD {{ tax }}</dd>
+						</dl>
+						<dl class="dlist-align">
+							<dt>Total:</dt>
+							<dd class="text-right  h5"><strong>${{ grand_total }}</strong></dd>
+						</dl>
+						<hr>
+						<p class="text-center mb-3">
+							<img src="{% static 'images/misc/payments.png' %}" height="26">
+						</p>
+
+                        <div>
+                            <button type="submit" name="submit" class="btn btn-primary btn-block">Place Order</button>
+                            <a href="{% url 'store' %}" class="btn btn-light btn-block">Continue Shopping</a>                
+                        </div>
+					</div> <!-- card-body.// -->
+				</div> <!-- card .// -->
+			</aside> <!-- col.// -->
+		</div>
+        </form>
+
+	</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+{% endblock %}
