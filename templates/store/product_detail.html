@@ -30,14 +30,14 @@
 	<aside class="col-md-6">
         <div class="card">
         <article class="gallery-wrap"> 
-            <div class="img-big-wrap">
-            <div> <a href="#"><img src="{{ single_product.images.url }}"></a></div>
+            <div class="img-big-wrap mainImage">
+                <div> <a href="#"><img src="{{ single_product.images.url }}"></a></div>
             </div> <!-- slider-product.// -->
             <div class="thumbs-wrap">
-            <a href="#" class="item-thumb"> <img src="images/items/15.jpg"></a>
-            <a href="#" class="item-thumb"> <img src="images/items/15-1.jpg"></a>
-            <a href="#" class="item-thumb"> <img src="images/items/15-2.jpg"></a>
-            <a href="#" class="item-thumb"> <img src="images/items/15-1.jpg"></a>
+                <a href="{{ single_product.images.url }}" target="mainImage" class="item-thumb"><img src="{{ single_product.images.url }}" alt="Product Image"></a>
+                {% for i in product_gallery %}
+                <a href="{{i.image.url}}" target="mainImage" class="item-thumb"> <img src="{{i.image.url}}" alt="Product Image"></a>
+                {% endfor %}
             </div> <!-- slider-nav.// -->
         </article> <!-- gallery-wrap .end// -->
         </div> <!-- card.// -->

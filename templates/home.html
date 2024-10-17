@@ -56,14 +56,17 @@
 		<div class="card card-product-grid">
 			<a href="{{ product.get_url }}" class="img-wrap"> <img src="{{product.images.url}}"> </a>
 			<figcaption class="info-wrap">
-                <ul class="rating-stars mb-1">
-                	<li style="width:80%" class="stars-active">
-						<img src="{% static 'images/icons/stars-active.svg' %}" alt="">
-					</li>
-					<li>
-						<img src="{% static 'images/icons/starts-disable.svg' %}" alt="">
-					</li>
-				</ul>
+                <div class="rating-wrap my-3">
+					<div class="rating-star">
+                	<span>
+						<i class="fa fa-star{% if product.averageReview < 0.5 %}-o{% elif product.averageReview >= 0.5 and product.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
+						<i class="fa fa-star{% if product.averageReview < 1.5 %}-o{% elif product.averageReview >= 1.5 and product.averageReview < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
+						<i class="fa fa-star{% if product.averageReview < 2.5 %}-o{% elif product.averageReview >= 2.5 and product.averageReview < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
+						<i class="fa fa-star{% if product.averageReview < 3.5 %}-o{% elif product.averageReview >= 3.5 and product.averageReview < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
+						<i class="fa fa-star{% if product.averageReview < 4.5 %}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
+					</span>
+					</div>
+				</div>
 				<div>
 					<a href="{{ product.get_url }}" class="text-muted">{{product.category.category_name}}</a>
                 	<a href="{{ product.get_url }}" class="title">{{product.description}}</a>
