@@ -23,7 +23,7 @@ A full-featured online shopping platform built with Django. This project allows 
 
 ```bash
 git clone https://github.com/spacelinkers/online_store.git
-cd online-shopping-site
+cd online_store
 ```
 
 2. **Create a virtual environment**:
