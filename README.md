@@ -2,7 +2,9 @@
 
 A full-featured online shopping platform built with Django. This project allows users to browse products, add items to the cart, and proceed to checkout. It includes essential functionalities like user authentication, product listing, search, and order management.
 
+<br>
 
+![alt text](https://github.com/spacelinkers/online_store/blob/main/demo.gif "Logo Title Text 1")
 
 ## Features
 
