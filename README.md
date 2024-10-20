@@ -2,6 +2,8 @@
 
 A full-featured online shopping platform built with Django. This project allows users to browse products, add items to the cart, and proceed to checkout. It includes essential functionalities like user authentication, product listing, search, and order management.
 
+
+
 ## Features
 
 - User authentication (Sign Up, Login, Logout)
@@ -60,9 +62,6 @@ Now the application will be available at http://127.0.0.1:8000/.
 ## Usage
 - **Users**: Users can register, log in, and manage their profiles. They can browse through products, add items to their cart, and complete purchases.
 - **Admin**: Admins can manage products, orders, and users from the Django Admin interface (/admin).
-
-## Screenshots
-
 
 ## License
 This project is licensed under the MIT License.
